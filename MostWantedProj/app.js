@@ -71,6 +71,20 @@ function searchByName(people){
   return foundPerson;
 }
 
+function searchByTraits(people){
+  let gender = promptFor("What is the person's gender?", chars);
+  let eyeColor = promptFor("What is the person's eye color?", chars);
+  let foundPerson = people.filter(function(person){
+    if(person.gender === gender && person.eyeColor === eyeColor){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+
+}
+
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
