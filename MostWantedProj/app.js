@@ -66,24 +66,29 @@ function searchByName(people){
     else{
       return false;
     }
-  })
+  })  
   // TODO: find the person using the name they entered
   return foundPerson;
 }
 
-function searchByTraits(people){
-  let gender = promptFor("What is the person's gender?", chars);
-  let eyeColor = promptFor("What is the person's eye color?", chars);
-  let foundPerson = people.filter(function(person){
-    if(person.gender === gender && person.eyeColor === eyeColor){
-      return true;
-    }
-    else{
-      return false;
-    }
-  })
+//function searchByTraits(people){
+  //let traitSearch = promptFor("What traits are you searching? 1) Gender, 2) Age, 3) Eyecolor 4)", chars);
 
-}
+  //switch(traitSearch)
+  //case "gender"
+  
+  //let gender = promptFor("What is the person's gender?", chars);
+  //let eyeColor = promptFor("What is the person's eye color?", chars);
+  //let foundPerson = people.filter(function(person){
+    //if(person.gender === gender && person.eyeColor === eyeColor){
+     // return true;
+   // }
+    //else{
+    //  return false;
+  //  }
+ // })
+  //todo
+//}
 
 // alerts a list of people
 function displayPeople(people){

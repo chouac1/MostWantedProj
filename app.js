@@ -68,10 +68,8 @@ function searchByName(people){
     }
   })
 
-  // TODO: find the person using the name they entered
-  //displayPerson(person);
-
-  return foundPerson["firstName", "lastName"];
+  displayPerson(foundPerson[0]);
+  return foundPerson;
 }
 
 function searchByTraits(people){
