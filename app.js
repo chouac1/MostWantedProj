@@ -67,9 +67,11 @@ function searchByName(people){
       return false;
     }
   })
-  
+
   // TODO: find the person using the name they entered
-  return foundPerson;
+  //displayPerson(person);
+
+  return foundPerson["firstName", "lastName"];
 }
 
 function searchByTraits(people){
@@ -86,6 +88,8 @@ function searchByTraits(people){
   })
   
   // TODO: find the person using the name they entered
+
+
   return foundPerson;
 }
 
