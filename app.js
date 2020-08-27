@@ -12,7 +12,7 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
-      searchResults = searchByTraits(people);
+      // TODO: search by traits
       break;
       default:
     app(people); // restart app
@@ -66,30 +66,30 @@ function searchByName(people){
     else{
       return false;
     }
-  })
-
+  })  
+  // TODO: find the person using the name they entered
   displayPerson(foundPerson[0]);
   return foundPerson;
 }
 
-function searchByTraits(people){
-  let gender = promptFor("What is the person's gender?", chars);
-  let eyeColor = promptFor("What is the person's eye color?", chars);
+//function searchByTraits(people){
+  //let traitSearch = promptFor("What traits are you searching? 1) Gender, 2) Age, 3) Eyecolor 4)", chars);
 
-  let foundPerson = people.filter(function(person){
-    if(person.gender === gender && person.eyeColor === eyeColor){
-      return true;
-    }
-    else{
-      return false;
-    }
-  })
+  //switch(traitSearch)
+  //case "gender"
   
-  // TODO: find the person using the name they entered
-
-
-  return foundPerson;
-}
+  //let gender = promptFor("What is the person's gender?", chars);
+  //let eyeColor = promptFor("What is the person's eye color?", chars);
+  //let foundPerson = people.filter(function(person){
+    //if(person.gender === gender && person.eyeColor === eyeColor){
+     // return true;
+   // }
+    //else{
+    //  return false;
+  //  }
+ // })
+  //todo
+//}
 
 // alerts a list of people
 function displayPeople(people){
@@ -103,7 +103,15 @@ function displayPerson(person){
   // height, weight, age, name, occupation, eye color.
   let personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
-  // TODO: finish getting the rest of the information to display
+  personInfo += "ID: " + person.id + "\n";
+  personInfo += "Gender: " + person.gender + "\n";
+  personInfo += "DOB: " + person.dob + "\n";
+  personInfo += "Height: " + person.height + "\n";
+  personInfo += "Weight: " + person.weight + "\n";
+  personInfo += "Eye Color: " + person.eyeColor + "\n";
+  personInfo += "Occupation: " + person.occupation + "\n";
+  personInfo += "Parents: " + person.parents + "\n";
+  personInfo += "Spouse: " + person.currentSpouse + "\n";
   alert(personInfo);
 }
 
