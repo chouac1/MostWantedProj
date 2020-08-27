@@ -12,7 +12,7 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
-      searchResults =searchByTrait(people);
+      searchResults = searchByTraits(people);
       break;
       default:
     app(people); // restart app
@@ -67,28 +67,45 @@ function searchByName(people){
       return false;
     }
   })  
-  // TODO: find the person using the name they entered
+
   displayPerson(foundPerson[0]);
   return foundPerson;
 }
 
-function searchByTraits(people){
+function searchByTraits(people) {
   let traitSearch = promptFor("What traits are you searching? 1) Gender, 2) Age, 3) Eyecolor", chars);
-  
-  switch(traitSearch){
-      case "1":
-      // TODO: get person's info
+  let searchResults;
+  switch (traitSearch) {
+    case "1":
+      searchResults = searchGender(people);
       break;
-      case "2":
+    case "2":
       // TODO: get person's family
       break;
-      case "3":
+    case "3":
       // TODO: get person's descendants
       break;
-      default:
+    default:
       return mainMenu(person, people); // ask again
-  
   }
+
+  }
+
+function searchGender(people){
+  let gender = promptFor("What is the person's gender?", chars);
+
+  let foundPeople = people.filter(function(person){
+    if(person.gender === gender){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })  
+
+displayPeople(foundPeople);
+return foundPeople;
+}
 
 // alerts a list of people
 function displayPeople(people){
