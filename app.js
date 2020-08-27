@@ -72,28 +72,39 @@ function searchByName(people){
   return foundPerson;
 }
 
-function searchByTraits(people){
-let traitSearch = promptFor("What traits are you searching? 1) Gender, 2) Age, 3) Eyecolor", chars);
-
-switch(traitSearch){
-  case "1":
-    // TODO: get person's info
-    break;
+function searchByTraits(people) {
+  let traitSearch = promptFor("What traits are you searching? 1) Gender, 2) Age, 3) Eyecolor", chars);
+  let searchResults;
+  switch (traitSearch) {
+    case "1":
+      searchResults = searchGender(people);
+      break;
     case "2":
-    // TODO: get person's family
-    break;
+      // TODO: get person's family
+      break;
     case "3":
-    // TODO: get person's descendants
-    break;
+      // TODO: get person's descendants
+      break;
     default:
-    return mainMenu(person, people); // ask again
+      return mainMenu(person, people); // ask again
+  }
 
-}
+  }
 
-}
+function searchGender(people){
+  let gender = promptFor("What is the person's gender?", chars);
 
-displayPerson(foundPerson[0]);{
-return foundPerson;
+  let foundPeople = people.filter(function(person){
+    if(person.gender === gender){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })  
+
+displayPeople(foundPeople);
+return foundPeople;
 }
 
 // alerts a list of people
