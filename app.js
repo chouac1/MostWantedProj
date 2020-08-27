@@ -103,6 +103,30 @@ function searchGender(people){
     }
   })  
 
+  function age(people){
+    let age = promptFor("What is the person's age?", chars);
+  
+    let foundPeople = people.filter(function(person){
+      if(person.age === age){
+        return true;
+      }
+      else{
+        return false;
+      }
+    })  
+
+    function eyeColor(people){
+      let eyeColor = promptFor("What is the person's eye color?", chars);
+    
+      let foundPeople = people.filter(function(person){
+        if(person.eyeColor === eyeColor){
+          return true;
+        }
+        else{
+          return false;
+        }
+      })  
+
 displayPeople(foundPeople);
 return foundPeople;
 }
