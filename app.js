@@ -12,7 +12,7 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
-      // TODO: search by traits
+      searchResults =searchByTrait(people);
       break;
       default:
     app(people); // restart app
@@ -72,24 +72,23 @@ function searchByName(people){
   return foundPerson;
 }
 
-//function searchByTraits(people){
-  //let traitSearch = promptFor("What traits are you searching? 1) Gender, 2) Age, 3) Eyecolor 4)", chars);
-
-  //switch(traitSearch)
-  //case "gender"
+function searchByTraits(people){
+  let traitSearch = promptFor("What traits are you searching? 1) Gender, 2) Age, 3) Eyecolor", chars);
   
-  //let gender = promptFor("What is the person's gender?", chars);
-  //let eyeColor = promptFor("What is the person's eye color?", chars);
-  //let foundPerson = people.filter(function(person){
-    //if(person.gender === gender && person.eyeColor === eyeColor){
-     // return true;
-   // }
-    //else{
-    //  return false;
-  //  }
- // })
-  //todo
-//}
+  switch(traitSearch){
+      case "1":
+      // TODO: get person's info
+      break;
+      case "2":
+      // TODO: get person's family
+      break;
+      case "3":
+      // TODO: get person's descendants
+      break;
+      default:
+      return mainMenu(person, people); // ask again
+  
+  }
 
 // alerts a list of people
 function displayPeople(people){
