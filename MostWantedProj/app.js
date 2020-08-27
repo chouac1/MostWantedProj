@@ -68,6 +68,7 @@ function searchByName(people){
     }
   })  
   // TODO: find the person using the name they entered
+  displayPerson(foundPerson[0]);
   return foundPerson;
 }
 
