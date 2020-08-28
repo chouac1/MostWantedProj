@@ -72,7 +72,7 @@ function searchByName(people){
 }
 
 function searchByTraits(people) {
-  let traitSearch = promptFor("What traits are you searching? 1). Gender, 2). Age, 3). Eyecolor", chars);
+  let traitSearch = promptFor("What traits are you searching? 1). Gender\n2). Age\n3). Eyecolor\n4). Height\n5). Weight\n 6). Occupation", chars);
   let searchResults;
   switch (traitSearch) {
     case "1":
@@ -83,6 +83,15 @@ function searchByTraits(people) {
       break;
     case "3":
       searchResults = searchEyecolor(people)
+      break;
+    case "4":
+      searchResults = searchHeight(people)
+      break;
+    case "5":
+      searchresults = searchWeight(people)
+      break;
+    case "6":
+      searchResults = searchOccupation(people)
       break;
     default:
       return mainMenu(person, people); // ask again
@@ -135,6 +144,51 @@ function searchEyecolor(people){
 displayPeople(foundPeople);
 return foundPeople;
 }
+
+function searchHeight(people){
+  let height = promptFor("What is the person's height in inches?", chars);
+
+  let foundPeople = people.filter(function(person){
+    if(person.height == height){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  displayPeople(foundPeople);
+  return foundPeople;
+  }
+
+  function searchWeight(people){
+    let weight = promptFor("What is the person's weight in pounds?", chars);
+  
+    let foundPeople = people.filter(function(person){
+      if(person.weight == weight){
+        return true;
+      }
+      else{
+        return false;
+      }
+    })
+    displayPeople(foundPeople);
+    return foundPeople;
+    }
+
+    function searchOccupation(people){
+      let occupation = promptFor("What is the person's occupation?", chars);
+    
+      let foundPeople = people.filter(function(person){
+        if(person.occupation == occupation){
+          return true;
+        }
+        else{
+          return false;
+        }
+      })
+      displayPeople(foundPeople);
+      return foundPeople;
+      }
 
 function calculateAge(dob) {
   var today = new Date();
