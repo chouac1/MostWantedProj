@@ -73,23 +73,22 @@ function searchByName(people){
 }
 
 function searchByTraits(people) {
-  let traitSearch = promptFor("What traits are you searching? 1) Gender, 2) Age, 3) Eyecolor", chars);
+  let traitSearch = promptFor("What traits are you searching? 1). Gender, 2). Age, 3). Eyecolor", chars);
   let searchResults;
   switch (traitSearch) {
     case "1":
       searchResults = searchGender(people);
       break;
     case "2":
-      // TODO: get person's family
+      searchResults = searchAge(people);
       break;
     case "3":
-      // TODO: get person's descendants
+      searchResults = searchEyecolor(people)
       break;
     default:
       return mainMenu(person, people); // ask again
-  }
-
-  }
+ }
+}
 
 function searchGender(people){
   let gender = promptFor("What is the person's gender?", chars);
@@ -102,34 +101,53 @@ function searchGender(people){
       return false;
     }
   })  
+  displayPeople(foundPeople);
+  return foundPeople;
+  }
 
-  function age(people){
-    let age = promptFor("What is the person's age?", chars);
-  
-    let foundPeople = people.filter(function(person){
-      if(person.dob === age){
-        return true;
-      }
-      else{
-        return false;
-      }
-    })  
+function searchAge(people){
+  let age = promptFor("What is the person's age?", chars);
 
-    function eyeColor(people){
-      let eyeColor = promptFor("What is the person's eye color?", chars);
-    
-      let foundPeople = people.filter(function(person){
-        if(person.eyeColor === eyeColor){
-          return true;
-        }
-        else{
-          return false;
-        }
-      })  
+  let foundPeople = people.filter(function(person){
+    if(person.age === age){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  displayPeople(foundPeople);
+  return foundPeople;
+  }
+
+function searchEyecolor(people){
+  let eyeColor = promptFor("What is the person's eye color?", chars);
+
+  let foundPeople = people.filter(function(person){
+    if(person.eyeColor === eyeColor){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })  
 
 displayPeople(foundPeople);
 return foundPeople;
 }
+
+function calculateAge(dob) {
+  var today = new Date();
+  var birthDate = new Date(dob);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age = age - 1;
+  }
+
+  return age;
+}
+
 
 // alerts a list of people
 function displayPeople(people){
