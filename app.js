@@ -107,9 +107,10 @@ function searchGender(people){
 
 function searchAge(people){
   let age = promptFor("What is the person's age?", chars);
+  // let ageAsNumber = parseInt(age);
 
   let foundPeople = people.filter(function(person){
-    if(person.age === age){
+    if(calculateAge(person.dob) == age){
       return true;
     }
     else{
