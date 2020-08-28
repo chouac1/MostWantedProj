@@ -146,6 +146,51 @@ displayPeople(foundPeople);
 return foundPeople;
 }
 
+function searchHeight(people){
+  let height = promptFor("What is the person's height in inches?", chars);
+
+  let foundPeople = people.filter(function(person){
+    if(person.height == height){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  displayPeople(foundPeople);
+  return foundPeople;
+  }
+
+  function searchWeight(people){
+    let weight = promptFor("What is the person's weight in pounds?", chars);
+  
+    let foundPeople = people.filter(function(person){
+      if(person.weight == weight){
+        return true;
+      }
+      else{
+        return false;
+      }
+    })
+    displayPeople(foundPeople);
+    return foundPeople;
+    }
+
+    function searchOccupation(people){
+      let occupation = promptFor("What is the person's occupation?", chars);
+    
+      let foundPeople = people.filter(function(person){
+        if(person.occupation == occupation){
+          return true;
+        }
+        else{
+          return false;
+        }
+      })
+      displayPeople(foundPeople);
+      return foundPeople;
+      }
+
 function calculateAge(dob) {
   var today = new Date();
   var birthDate = new Date(dob);
