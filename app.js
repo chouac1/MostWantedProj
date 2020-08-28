@@ -37,7 +37,7 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
-    // TODO: get person's info
+      displayPerson(person);
     break;
     case "family":
     let parentID = person.parents[0];
@@ -78,8 +78,7 @@ function searchByName(people){
     }
   })  
 
-  displayPerson(foundPerson[0]);
-  return foundPerson;
+  return foundPerson[0];
 }
 
 function searchByTraits(people) {
