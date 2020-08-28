@@ -40,17 +40,44 @@ function mainMenu(person, people){
       displayPerson(person);
     break;
     case "family":
-    let parentID = person.parents[0];
-
-    let foundPerson = people.filter(function(person){
-      if(person.id == parentID){
-        return true;
-      }
-      else{
-        return false;
-      }
-    })  
-    displayPeople(foundPerson);
+    let parentIDs = person.parents;
+    if (parentIDs.length === 0){
+      alert("No parents found");
+    }
+    else if (parentIDs.length === 1){
+      let parentID = parentIDs[0];
+      let foundPerson = people.filter(function(person){
+        if(person.id == parentID){
+          return true;
+        }
+        else{
+          return false;
+        }    
+      })
+      displayPerson(foundPerson[0]);
+    }
+    else if (parentIDs.length === 2){
+      let parentOneID = parentIDs[0];
+      let parentTwoID = parentIDs[1];
+      let foundPersonOne = people.filter(function(person){
+        if(person.id == parentOneID){
+          return true;
+        }
+        else{
+          return false;
+        }    
+      })
+      let foundPersonTwo = people.filter(function(person){
+        if(person.id == parentTwoID){
+          return true;
+        }
+        else{
+          return false;
+        }    
+      })
+      displayPerson(foundPersonOne[0]);
+      displayPerson(foundPersonTwo[0]);
+    }
     break;
     case "descendants":
     // TODO: get person's descendants
