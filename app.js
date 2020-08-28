@@ -41,6 +41,7 @@ function mainMenu(person, people){
     break;
     case "family":
     let parentIDs = person.parents;
+    let spouseID = person.currentSpouse;
     if (parentIDs.length === 0){
       alert("No parents found");
     }
@@ -54,6 +55,7 @@ function mainMenu(person, people){
           return false;
         }    
       })
+      alert ("One parent found");
       displayPerson(foundPerson[0]);
     }
     else if (parentIDs.length === 2){
@@ -75,8 +77,24 @@ function mainMenu(person, people){
           return false;
         }    
       })
+      alert ("Two parents found");
       displayPerson(foundPersonOne[0]);
       displayPerson(foundPersonTwo[0]);
+    }
+    if (spouseID === null){
+      alert("No spouse found");
+    }
+    else {
+      let foundPerson = people.filter(function(person){
+        if(person.id == spouseID){
+          return true;
+        }
+        else{
+          return false;
+        }    
+      })
+      alert("Spouse found");
+      displayPerson(foundPerson[0]);
     }
     break;
     case "descendants":
