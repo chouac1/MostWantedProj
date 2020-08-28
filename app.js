@@ -44,6 +44,7 @@ function mainMenu(person, people){
     let spouseID = person.currentSpouse;
     if (parentIDs.length === 0){
       alert("No parents found");
+      alert("no siblings found");
     }
     else if (parentIDs.length === 1){
       let parentID = parentIDs[0];
@@ -55,8 +56,20 @@ function mainMenu(person, people){
           return false;
         }    
       })
+      let foundParent = foundPerson[0];
+      let foundParentId = foundParent.id;
+      let foundSiblings = people.filter(function(person1){
+        if(person1.parents.includes(foundParentId) && person.id != person1.id){
+          return true;
+        }
+        else{
+          return false;
+        } 
+      })
       alert ("One parent found");
-      displayPerson(foundPerson[0]);
+      displayPerson(foundParent);
+      alert ("Siblings found");
+      displayPeople(foundSiblings);
     }
     else if (parentIDs.length === 2){
       let parentOneID = parentIDs[0];
@@ -77,9 +90,23 @@ function mainMenu(person, people){
           return false;
         }    
       })
+      let foundParentOne = foundPersonOne[0];
+      let foundParentTwo = foundPersonTwo[0];
+      let foundParentOneId = foundParentOne.id;
+      let foundParentOTwoId = foundParentTwo.id;
+      let foundSiblings = people.filter(function(person1){
+        if(person1.parents.includes(foundParentOneId) && person1.id != person.id || person1.parents.includes(foundParentOTwoId) && person1.id != person.id){
+          return true;
+        }
+        else{
+          return false;
+        } 
+      })      
       alert ("Two parents found");
-      displayPerson(foundPersonOne[0]);
-      displayPerson(foundPersonTwo[0]);
+      displayPerson(foundParentOne);
+      displayPerson(foundParentTwo);
+      alert("Siblings found");
+      displayPeople(foundSiblings);
     }
     if (spouseID === null){
       alert("No spouse found");
@@ -298,3 +325,7 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
+
+
+
+
