@@ -40,7 +40,17 @@ function mainMenu(person, people){
     // TODO: get person's info
     break;
     case "family":
-    // TODO: get person's family
+    let parentID = person.parents[0];
+
+    let foundPerson = people.filter(function(person){
+      if(person.id == parentID){
+        return true;
+      }
+      else{
+        return false;
+      }
+    })  
+    displayPeople(foundPerson);
     break;
     case "descendants":
     // TODO: get person's descendants
@@ -73,7 +83,7 @@ function searchByName(people){
 }
 
 function searchByTraits(people) {
-  let traitSearch = promptFor("What traits are you searching? 1). Gender\n2). Age\n3). Eyecolor\n4). Height\n5). Weight\n 6). Occupation", chars);
+  let traitSearch = promptFor("What traits are you searching?\n1). Gender\n2). Age\n3). Eyecolor\n4). Height\n5). Weight\n 6). Occupation", chars);
   let searchResults;
   switch (traitSearch) {
     case "1":
