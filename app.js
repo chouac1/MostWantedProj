@@ -148,8 +148,6 @@ function calculateAge(dob) {
   return age;
 }
 
-
-
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
