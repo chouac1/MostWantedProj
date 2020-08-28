@@ -73,7 +73,7 @@ function searchByName(people){
 }
 
 function searchByTraits(people) {
-  let traitSearch = promptFor("What traits are you searching? 1). Gender, 2). Age, 3). Eyecolor", chars);
+  let traitSearch = promptFor("What traits are you searching? 1). Gender\n2). Age\n3). Eyecolor\n4). Height\n5). Weight\n 6). Occupation", chars);
   let searchResults;
   switch (traitSearch) {
     case "1":
@@ -84,6 +84,15 @@ function searchByTraits(people) {
       break;
     case "3":
       searchResults = searchEyecolor(people)
+      break;
+    case "4":
+      searchResults = searchHeight(people)
+      break;
+    case "5":
+      searchresults = searchWeight(people)
+      break;
+    case "6":
+      searchResults = searchOccupation(people)
       break;
     default:
       return mainMenu(person, people); // ask again
