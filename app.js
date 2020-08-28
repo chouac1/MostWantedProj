@@ -107,7 +107,7 @@ function searchGender(people){
     let age = promptFor("What is the person's age?", chars);
   
     let foundPeople = people.filter(function(person){
-      if(person.age === age){
+      if(person.dob === age){
         return true;
       }
       else{
