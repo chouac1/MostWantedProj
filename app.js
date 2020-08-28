@@ -37,10 +37,10 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
-    // TODO: get person's info
+      displayPerson(person);
     break;
     case "family":
-    // TODO: get person's family
+      displayPeople(person.people.currentSpouse);
     break;
     case "descendants":
     // TODO: get person's descendants
@@ -68,8 +68,7 @@ function searchByName(people){
     }
   })  
 
-  displayPerson(foundPerson[0]);
-  return foundPerson;
+  return foundPerson[0];
 }
 
 function searchByTraits(people) {
