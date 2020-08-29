@@ -125,7 +125,23 @@ function mainMenu(person, people){
     }
     break;
     case "descendants":
-    // TODO: get person's descendants
+    // recursion, needs terminating condition => when person doesn't have child
+    // so far this finds the children(as an array) of the person being searched and then runs the function again using that array
+    // but if it returns more than one it screws it up
+    function findChildren(person){
+      let foundChildren = people.filter(function(person1){
+        if (person1.parents.includes(person.id)){
+          return true;
+        }
+        else{
+          return false;
+        }
+        })
+        return foundChildren + findChildren(foundChildren);
+
+    }
+
+    findChildren(person);
     break;
     case "restart":
     app(people); // restart
