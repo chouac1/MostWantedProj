@@ -20,7 +20,9 @@ function app(people){
   }
   
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
+  if (searchResults.length === 1){
   mainMenu(searchResults, people);
+  }
 }
 
 // Menu function to call once you find who you are looking for
@@ -170,7 +172,7 @@ function searchByName(people){
 }
 
 function searchByTraits(people) {
-  let traitSearch = promptFor("What traits are you searching?\n1). Gender\n2). Age\n3). Eyecolor\n4). Height\n5). Weight\n 6). Occupation", chars);
+  let traitSearch = promptFor("What trait are you searching? (select a number)\n1). Gender\n2). Age\n3). Eye color\n4). Height\n5). Weight\n 6). Occupation", chars);
   let searchResults;
   switch (traitSearch) {
     case "1":
@@ -186,14 +188,21 @@ function searchByTraits(people) {
       searchResults = searchHeight(people)
       break;
     case "5":
-      searchresults = searchWeight(people)
+      searchResults = searchWeight(people)
       break;
     case "6":
       searchResults = searchOccupation(people)
       break;
     default:
-      return mainMenu(person, people); // ask again
+      return searchByTraits(people); // ask again
  }
+ let searchForAnotherTrait = prompt("Would you like to search for another trait? (yes or no)");
+if (searchForAnotherTrait == "yes"){
+  searchByTraits(searchResults);
+}
+else if (searchForAnotherTrait == "no"){
+  return searchResults;
+}
 }
 
 function searchGender(people){
