@@ -14,13 +14,16 @@ function app(people){
     case 'no':
       searchResults = searchByTraits(people);
       break;
-      default:
+    default:
     app(people); // restart app
       break;
   }
   
+  
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
-  mainMenu(searchResults, people);
+  //if (Object.keys(searchResults.id).length === 1){
+    //return true;
+    mainMenu(searchResults, people);
 }
 
 // Menu function to call once you find who you are looking for
@@ -40,10 +43,27 @@ function mainMenu(person, people){
       displayPerson(person);
     break;
     case "family":
-      displayPeople(person.people.currentSpouse);
+      findFamily(person, people);
     break;
     case "descendants":
-    // TODO: get person's descendants
+    // recursion, needs terminating condition => when person doesn't have child
+    // so far this finds the children(as an array) of the person being searched and then runs the function again using that array
+    // but if it returns more than one it screws it up    
+    
+    function findChildren(person){
+      let foundChildren = people.filter(function(person1){
+        if (person1.parents.includes(person.id)){
+          return true;
+        }
+        else{
+          return false;
+        }
+        })
+        return foundChildren + findChildren(foundChildren);
+
+    }
+
+    findChildren(person);
     break;
     case "restart":
     app(people); // restart
@@ -54,6 +74,7 @@ function mainMenu(person, people){
     return mainMenu(person, people); // ask again
   }
 }
+
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
@@ -72,7 +93,7 @@ function searchByName(people){
 }
 
 function searchByTraits(people) {
-  let traitSearch = promptFor("What traits are you searching? 1). Gender\n2). Age\n3). Eyecolor\n4). Height\n5). Weight\n 6). Occupation", chars);
+  let traitSearch = promptFor("What trait are you searching? (select a number)\n1). Gender\n2). Age\n3). Eye color\n4). Height\n5). Weight\n6). Occupation", chars);
   let searchResults;
   switch (traitSearch) {
     case "1":
@@ -88,14 +109,21 @@ function searchByTraits(people) {
       searchResults = searchHeight(people)
       break;
     case "5":
-      searchresults = searchWeight(people)
+      searchResults = searchWeight(people)
       break;
     case "6":
       searchResults = searchOccupation(people)
       break;
     default:
-      return mainMenu(person, people); // ask again
+      return searchByTraits(people); // ask again
  }
+ let searchForAnotherTrait = prompt("Would you like to search for another trait? (yes or no)");
+if (searchForAnotherTrait == "yes"){
+  searchByTraits(searchResults);
+}
+else if (searchForAnotherTrait == "no"){
+  return searchResults;
+}
 }
 
 function searchGender(people){
@@ -221,8 +249,6 @@ function displayPerson(person){
   personInfo += "Weight: " + person.weight + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   personInfo += "Occupation: " + person.occupation + "\n";
-  personInfo += "Parents: " + person.parents + "\n";
-  personInfo += "Spouse: " + person.currentSpouse + "\n";
   alert(personInfo);
 }
 
@@ -243,3 +269,33 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
+
+function findFamily(person, people){
+  let personInfo = "Name: " + person.firstName + " " + person.lastName + "\n";
+  personInfo += "Parents: " + displayPersonInfo(person.parents, people) + "\n";
+  personInfo += "Spouse: " + displayPersonInfo(person.currentSpouse, people) + "\n";
+  alert(personInfo);
+}
+
+function displayById(id, people){
+
+  let foundPerson = people.filter(function(person){
+    if(person.id === id){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })  
+  return foundPerson[0];
+}
+
+function displayPersonInfo(personId, people){
+  if (personId.length === 0){
+  return "no information found";
+}
+let person = displayById(personId, people);
+return person.firstName + " " + person.lastName;
+}
+
+
