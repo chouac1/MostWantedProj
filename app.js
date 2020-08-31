@@ -270,8 +270,9 @@ function chars(input){
 
 function findFamily(person, people){
   let personInfo = "Name: " + person.firstName + " " + person.lastName + "\n";
-  personInfo += "Parents: " + displayPersonInfo(person.parents, people) + "\n";
+  personInfo += "Parents: " + displayParentsArray(person.parents, people) + "\n";
   personInfo += "Spouse: " + displayPersonInfo(person.currentSpouse, people) + "\n";
+  //personInfo += "Children: " + displayPersonInfo() + "\n";
   alert(personInfo);
 }
 
@@ -286,6 +287,16 @@ function displayById(id, people){
     }
   })  
   return foundPerson[0];
+}
+
+function displayParentsArray(parentsArray, people){
+  if (parentsArray.length === 0){
+    return "no informatin found";
+  }
+  let parentsName = parentsArray.map(function(el){
+    return displayPersonInfo(el, people);
+  });
+  return parentsName;
 }
 
 function displayPersonInfo(personId, people){
