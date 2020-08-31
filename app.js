@@ -21,9 +21,8 @@ function app(people){
   
   
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
-  //if (Object.keys(searchResults.id).length === 1){
-    //return true;
     mainMenu(searchResults, people);
+
 }
 
 // Menu function to call once you find who you are looking for
@@ -48,8 +47,6 @@ function mainMenu(person, people){
     case "descendants":
     // recursion, needs terminating condition => when person doesn't have child
     // so far this finds the children(as an array) of the person being searched and then runs the function again using that array
-    // but if it returns more than one it screws it up    
-    
     function findChildren(person){
       let foundChildren = people.filter(function(person1){
         if (person1.parents.includes(person.id)){
@@ -94,6 +91,7 @@ function searchByName(people){
 
 function searchByTraits(people) {
   let traitSearch = promptFor("What trait are you searching? (select a number)\n1). Gender\n2). Age\n3). Eye color\n4). Height\n5). Weight\n6). Occupation", chars);
+
   let searchResults;
   switch (traitSearch) {
     case "1":
@@ -297,5 +295,6 @@ function displayPersonInfo(personId, people){
 let person = displayById(personId, people);
 return person.firstName + " " + person.lastName;
 }
+
 
 
